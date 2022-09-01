@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { Login } from "./pages/Login";
+import { Dashboard } from "./pages/Dashboard";
+import { Experiment } from "./pages/Experiment";
 
-function App() {
+export const App = () => {
+  // TODO: install tailwind, react-router
+  // app architecture and logic flow
+  // what happens when people finish an experiment
+  // tailwind styling
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>EvalPlat</h1>
+        <Login />
       </header>
     </div>
   );
-}
-
-export default App;
+};
