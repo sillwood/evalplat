@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
 
   const mockAuth = () =>
     new Promise((resolve) => {
-      setTimeout(() => resolve('im a token'), 200);
+      setTimeout(() => resolve('imaJWTtoken324832'), 200);
     });
 
   const navigate = useNavigate();

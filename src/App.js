@@ -2,9 +2,12 @@ import { AuthProvider } from './utils/authProvider';
 import { Routes, Route } from 'react-router-dom';
 import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
+import { ProtectedRoute } from './components/AuthRoute';
 
 export const App = () => {
+  // todo:
   // app architecture and logic flow
+  // persist token
   // what happens when people finish an experiment
   // tailwind styling
 
@@ -16,8 +19,15 @@ export const App = () => {
         </header>
         <Routes>
           <Route index element={<Login />} />
-          <Route path="login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />}></Route>
+          <Route path="home" element={<Login />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          ></Route>
         </Routes>
       </div>
     </AuthProvider>
