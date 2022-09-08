@@ -1,9 +1,10 @@
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { AuthProvider } from './utils/authProvider';
-import { Routes, Route } from 'react-router-dom';
+import { AuthRoute } from './components/AuthRoute';
 import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
-import { ProtectedRoute } from './components/AuthRoute';
 import { Experiment } from './pages/Experiment';
+import { Logout } from './components/Logout';
 
 export const App = () => {
   // todo:
@@ -12,11 +13,23 @@ export const App = () => {
   // what happens when people finish an experiment
   // tailwind styling
 
+  // todo API:
+  // GET: get all experiments summary with completion info
+  // GET: send id, get experiment data
+  // POST: answer pair send userId and questionId
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/dashboard');
+  };
+
   return (
     <AuthProvider>
       <div className="App">
-        <header className="App-header">
+        <header className="App-header" onClick={handleClick}>
           <h1>EvalPlat</h1>
+          <Logout />
         </header>
         <Routes>
           <Route index element={<Login />} />
@@ -24,24 +37,24 @@ export const App = () => {
           <Route
             path="/experiment/:id"
             element={
-              <ProtectedRoute>
+              <AuthRoute>
                 <Experiment />
-              </ProtectedRoute>
+              </AuthRoute>
             }
           />
           <Route
             path="/dashboard"
             element={
-              <ProtectedRoute>
+              <AuthRoute>
                 <Dashboard />
-              </ProtectedRoute>
+              </AuthRoute>
             }
           />
           <Route
             path="*"
             element={
               <main style={{ padding: '1rem' }}>
-                <h1>There's nothing here!</h1>
+                <h1>404 There's nothing here!</h1>
               </main>
             }
           />
