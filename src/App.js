@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
 import { ProtectedRoute } from './components/AuthRoute';
+import { Experiment } from './pages/Experiment';
 
 export const App = () => {
   // todo:
@@ -21,13 +22,29 @@ export const App = () => {
           <Route index element={<Login />} />
           <Route path="home" element={<Login />} />
           <Route
+            path="/experiment/:id"
+            element={
+              <ProtectedRoute>
+                <Experiment />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="/dashboard"
             element={
               <ProtectedRoute>
                 <Dashboard />
               </ProtectedRoute>
             }
-          ></Route>
+          />
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: '1rem' }}>
+                <h1>There's nothing here!</h1>
+              </main>
+            }
+          />
         </Routes>
       </div>
     </AuthProvider>

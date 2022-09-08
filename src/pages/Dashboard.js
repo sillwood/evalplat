@@ -5,18 +5,14 @@ export const Dashboard = () => {
   const { token } = useAuth();
 
   const mockExp = [
-    { title: 'test 1', totalQuestions: 10 },
-    { title: 'yoyo', totalQuestions: 12 },
-    { title: 'cooool', totalQuestions: 60 },
+    { title: 'test 1', totalQuestions: 10, id: 'test45678932' },
+    { title: 'yoyo', totalQuestions: 12, id: 'yoyo923084209383' },
+    { title: 'cooool test', totalQuestions: 60, id: 'cool23808903' },
   ];
 
   const renderExperiments = (experiments) => {
-    return experiments.map((experiment, idx) => (
-      <ExperimentCard
-        key={idx}
-        title={experiment.title}
-        totalQuestions={experiment.totalQuestions}
-      />
+    return experiments.map((experiment) => (
+      <ExperimentCard key={experiment.id} experiment={experiment} />
     ));
   };
 
