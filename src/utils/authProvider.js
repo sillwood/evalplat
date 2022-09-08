@@ -1,4 +1,5 @@
-import { useState, createContext } from "react";
+import { useState, createContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const AuthContext = createContext(null);
 
@@ -7,12 +8,15 @@ export const AuthProvider = ({ children }) => {
 
   const mockAuth = () =>
     new Promise((resolve) => {
-      setTimeout(() => resolve("im a token"), 200);
+      setTimeout(() => resolve('im a token'), 200);
     });
+
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     const token = await mockAuth();
     setToken(token);
+    navigate('/dashboard');
   };
 
   const handleLogout = () => {
