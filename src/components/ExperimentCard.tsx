@@ -1,10 +1,15 @@
 import { useNavigate } from 'react-router-dom';
+import { Experiment } from '../types';
 
-export const ExperimentCard = ({ experiment }) => {
+interface Props {
+  experiment: Experiment;
+}
+
+export const ExperimentCard = ({ experiment }: Props) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/experiment/${experiment.id}`, { state: experiment });
+    navigate(`/experiment/${experiment.id}`);
   };
 
   return (
