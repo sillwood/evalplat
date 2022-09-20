@@ -1,8 +1,8 @@
 interface Props {
   text: string;
-  handleClick: () => void;
+  onClick: () => void;
 }
 
-export const Button = ({ text, handleClick }: Props) => {
-  return <button onClick={handleClick}>{text}</button>;
+export const Button = ({ text, onClick }: Props) => {
+  return <button onClick={onClick}>{text}</button>;
 };
