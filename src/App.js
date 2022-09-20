@@ -9,7 +9,6 @@ import { Logout } from './components/Logout';
 export const App = () => {
   // todo:
   // persist token
-  // what happens when people finish an experiment (thank you page, return to dashboard)
   // tailwind styling
 
   // todo API:

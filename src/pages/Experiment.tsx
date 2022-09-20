@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { ExperimentComplete } from '../components/ExperimentComplete';
 import { Pair } from '../components/Pair';
 // import { useFetch } from '../hooks/useFetch';
 import { useLocalStorage } from '../hooks/useLocalStorage';
@@ -9,6 +10,7 @@ export const Experiment = () => {
   // two fetches: one for Experiment: with meta & pairs
   // const experiment: Experiment = useFetch("url.experiment.com/id");
   // const { pairs }: Pair[] = experiment;
+  const prompt = 'i am the prompt from the GET request experiment meta';
   const pairs: PairType[] = [
     {
       pairId: '00021',
@@ -31,6 +33,7 @@ export const Experiment = () => {
   ];
 
   // one for userId progress on particular experiment
+  // check localstorage to see if experimentId: currentIdx exists, if not, fetch currentIdx
   // const { completedIdx }: number = useFetch("url.userId.com/experimentId");
   const completedIdx = 0;
 
@@ -38,19 +41,20 @@ export const Experiment = () => {
 
   const renderExperimentContent = () => {
     return startIdx < pairs.length ? (
-      <div>
-        <p>experiment prompt explanation goes here lorem ipsum</p>
-        <Pair idx={startIdx} pairs={pairs} setStartIdx={setStartIdx} />
-      </div>
+      <Pair
+        prompt={prompt}
+        idx={startIdx}
+        pairs={pairs}
+        setStartIdx={setStartIdx}
+      />
     ) : (
-      <div>Experiment completed.</div>
+      <ExperimentComplete />
     );
   };
 
   return (
     <div>
-      <h1>This is the Experiment page</h1>
-      <h3>{id}</h3>
+      <h1>This is the Experiment page: {id}</h1>
       <div>{renderExperimentContent()}</div>
       <div>
         progress bar: {startIdx}/{pairs.length}
