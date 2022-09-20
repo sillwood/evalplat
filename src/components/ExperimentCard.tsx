@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import { Experiment } from '../types';
+import { ExperimentMeta } from '../types';
 
 interface Props {
-  experiment: Experiment;
+  experiment: ExperimentMeta;
 }
 
 export const ExperimentCard = ({ experiment }: Props) => {
@@ -15,7 +15,7 @@ export const ExperimentCard = ({ experiment }: Props) => {
   return (
     <div onClick={handleClick}>
       <h3>{experiment.title}</h3>
-      <h3>{experiment.totalQuestions}</h3>
+      <h3>{experiment.totalPairs}</h3>
     </div>
   );
 };

@@ -5,9 +5,9 @@ export const Dashboard = () => {
   const { token } = useAuth();
 
   const mockExp = [
-    { title: 'test 1', totalQuestions: 10, id: 'test45678932' },
-    { title: 'yoyo', totalQuestions: 12, id: 'yoyo923084209383' },
-    { title: 'cooool test', totalQuestions: 60, id: 'cool23808903' },
+    { title: 'test 1', totalPairs: 10, id: 'test45678932' },
+    { title: 'yoyo', totalPairs: 12, id: 'yoyo923084209383' },
+    { title: 'cooool test', totalPairs: 60, id: 'cool23808903' },
   ];
 
   const renderExperiments = (experiments) => {

@@ -1,30 +1,60 @@
 import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Pair } from '../components/Pair';
 // import { useFetch } from '../hooks/useFetch';
-import { Button } from '../components/Button';
+import { useLocalStorage } from '../hooks/useLocalStorage';
+import { PairType } from '../types';
 
 export const Experiment = () => {
-  const navigate = useNavigate();
   const { id } = useParams();
-  // todo: fetch test data with id
+  // two fetches: one for Experiment: with meta & pairs
+  // const experiment: Experiment = useFetch("url.experiment.com/id");
+  // const { pairs }: Pair[] = experiment;
+  const pairs: PairType[] = [
+    {
+      pairId: '00021',
+      choiceA: 'hi im media one',
+      choiceB: 'hi im media two',
+      experimentId: 'ex12321',
+    },
+    {
+      pairId: '0034',
+      choiceA: 'hi im media one :)',
+      choiceB: 'hi im media two :P',
+      experimentId: 'ex12321',
+    },
+    {
+      pairId: '0054',
+      choiceA: 'oneee',
+      choiceB: 'twooooo',
+      experimentId: 'ex12321',
+    },
+  ];
 
-  // const experimentPairs: Pair[] = useFetch("url.pairs.com/id");
+  // one for userId progress on particular experiment
+  // const { completedIdx }: number = useFetch("url.userId.com/experimentId");
+  const completedIdx = 0;
 
-  // get startIdx from last answered question, otherwise default to 0
-  const startIdx = 0;
+  const [startIdx, setStartIdx] = useLocalStorage(id, completedIdx);
 
-  const getButtonText = () => (startIdx > 0 ? 'Continue' : 'Start');
-
-  const handleStart = () => {
-    navigate(`/experiment/${id}/${startIdx}`);
+  const renderExperimentContent = () => {
+    return startIdx < pairs.length ? (
+      <div>
+        <p>experiment prompt explanation goes here lorem ipsum</p>
+        <Pair idx={startIdx} pairs={pairs} setStartIdx={setStartIdx} />
+      </div>
+    ) : (
+      <div>Experiment completed.</div>
+    );
   };
 
   return (
     <div>
       <h1>This is the Experiment page</h1>
       <h3>{id}</h3>
-      <p>Instructions for experiment type goes here</p>
-      <Button text={getButtonText()} onClick={handleStart} />
+      <div>{renderExperimentContent()}</div>
+      <div>
+        progress bar: {startIdx}/{pairs.length}
+      </div>
     </div>
   );
 };
