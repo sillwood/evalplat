@@ -1,14 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { ExperimentComplete } from '../components/ExperimentComplete';
 import { Pair } from '../components/Pair';
-// import { useFetch } from '../hooks/useFetch';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { PairType } from '../types';
 
 export const Experiment = () => {
   const { id } = useParams();
   // two fetches: one for Experiment: with meta & pairs
-  // const experiment: Experiment = useFetch("url.experiment.com/id");
   // const { pairs }: Pair[] = experiment;
   const prompt = 'i am the prompt from the GET request experiment meta';
   const pairs: PairType[] = [
