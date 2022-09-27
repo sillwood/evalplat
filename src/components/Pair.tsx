@@ -2,7 +2,6 @@ import { PairType } from '../types';
 import { Button } from './Button';
 
 interface Props {
-  prompt: string;
   idx: number;
   pairs: PairType[];
   setStartIdx: (idx: number) => void;
@@ -10,7 +9,7 @@ interface Props {
 
 type selected = 'a' | 'b';
 
-export const Pair = ({ prompt, idx, pairs, setStartIdx }: Props) => {
+export const Pair = ({ idx, pairs, setStartIdx }: Props) => {
   const handleSubmit = (selected: selected) => {
     console.log(`handling submit of ${selected}`);
     // post response to server (user id, pair id, selected choice)
@@ -20,17 +19,17 @@ export const Pair = ({ prompt, idx, pairs, setStartIdx }: Props) => {
 
   return (
     <>
-      <p>{prompt}</p>
+      <p>{pairs[idx].experiment.prompt}</p>
       <div>
         <h3>This is Pair: {idx}</h3>
       </div>
       <>
         <div>
-          {pairs[idx].choiceA}
+          {pairs[idx].media_a}
           <Button text={'Choice A'} onClick={() => handleSubmit('a')} />
         </div>
         <div>
-          {pairs[idx].choiceB}
+          {pairs[idx].media_b}
           <Button text={'Choice B'} onClick={() => handleSubmit('b')} />
         </div>
       </>

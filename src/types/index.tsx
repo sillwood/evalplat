@@ -1,20 +1,22 @@
 export type MediaType = 'audio' | 'video';
-export type ResType = 'one' | 'two';
+export type ResType = 'AB' | 'other';
 
 export type ExperimentMeta = {
-  id: string;
+  id: number;
+  created_at: Date;
   title: string;
   prompt: string;
-  resType: ResType;
-  mediaType: MediaType;
-  totalPairs: number;
+  res_type: ResType;
+  media_type: MediaType;
+  pair: Array<any>;
 };
 
 export type PairType = {
-  pairId: string;
-  choiceA: string;
-  choiceB: string;
-  experimentId: string;
+  id: string;
+  media_a: string;
+  media_b: string;
+  experiment_id: string;
+  experiment: any;
 };
 
 export type Experiment = {
