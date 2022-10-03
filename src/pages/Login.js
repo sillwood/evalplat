@@ -1,13 +1,60 @@
 import { useAuth } from '../hooks/useAuth';
+// import { useState } from 'react';
+import { supabase } from '../services/supabaseClient';
+import { Auth, ThemeSupa } from '@supabase/auth-ui-react';
 
 export const Login = () => {
-  const { token, handleLogin } = useAuth();
+  // isSigningUp from params?
+  // const [isSigningUp, setIsSigningUp] = useState(false);
+  // const [formState, setFormState] = useState({ email: '', password: '' });
+  // const { token, handleSignup, handleLogin } = useAuth();
+
+  // const handleTabChange = () => {
+  //   setFormState({ email: '', password: '' });
+  //   setIsSigningUp(!isSigningUp);
+  // };
+
+  // const handleChange = (e) => {
+  //   setFormState({ ...formState, [e.target.name]: e.target.value });
+  // };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   isSigningUp ? handleSignup(formState) : handleLogin(formState);
+  // };
 
   return (
     <div>
-      <h1>This is the Login page</h1>
+      <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
+      {/* <div>
+        <form>
+          <input
+            name="email"
+            type="text"
+            placeholder="email"
+            value={formState.email}
+            onChange={handleChange}
+          />
+          <input
+            name="password"
+            type="password"
+            placeholder="password"
+            value={formState.password}
+            onChange={handleChange}
+          />
+          <button onSubmit={handleSubmit}>
+            {isSigningUp ? 'Register' : 'Login'}
+          </button>
+        </form>
+        <p onClick={handleTabChange}>
+          {isSigningUp
+            ? 'Already registered? Login here.'
+            : 'New user? Register here.'}
+        </p>
+      </div> */}
+      {/* <h1>This is the Login page</h1>
       <h2>token: {token}</h2>
-      <button onClick={handleLogin}>Login</button>
+      <button onClick={handleLogin}>Login</button> */}
     </div>
   );
 };

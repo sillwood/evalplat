@@ -15,7 +15,8 @@ export const ExperimentCard = ({ experiment }: Props) => {
   return (
     <div onClick={handleClick}>
       <h3>{experiment.title}</h3>
-      <h3>Length: {experiment.pair.length}</h3>
+      <p>{experiment.prompt}</p>
+      <p>Length: {experiment.pair.length}</p>
     </div>
   );
 };

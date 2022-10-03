@@ -16,7 +16,7 @@ export type PairType = {
   media_a: string;
   media_b: string;
   experiment_id: string;
-  experiment: any;
+  experiment: ExperimentMeta;
 };
 
 export type Experiment = {
