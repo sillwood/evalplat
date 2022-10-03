@@ -8,51 +8,50 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const getToken = async () => {
-      const { data, error } = await supabase.auth.getSession();
-      if (error) {
-        console.error(error);
-      } else {
-        console.log('token hereee ', data.session.access_token);
-        setToken(data.session.access_token);
-        navigate('/dashboard');
-      }
-    };
-
-    getToken();
-  }, [token, navigate]);
-
-  const handleLogin = async ({ email, password }) => {
-    let { user, error } = await supabase.auth.signInWithPassword({
+  const handleSignup = async ({ email, password }) => {
+    let { data, error } = await supabase.auth.signUp({
       email,
       password,
     });
-    navigate('/dashboard');
+
+    if (error) {
+      console.error(error);
+    } else {
+      // confirm email signup?
+      console.log(data);
+      console.log('need to confirm email signup');
+    }
   };
 
-  const handleLogout = () => {
-    setToken(null);
+  const handleLogin = async ({ email, password }) => {
+    let { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      console.error(error);
+    } else {
+      setToken(data.session.access_token);
+      navigate('/dashboard');
+    }
+  };
+
+  const handleLogout = async () => {
+    let { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error(error);
+    } else {
+      setToken(null);
+    }
   };
 
   const value = {
     token,
+    handleSignup,
     handleLogin,
     handleLogout,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
-
-// // login
-// const signInWithEmail = async () => {
-//   const { user, error } = await supabase.auth.signIn({
-//     email: 'example@email.com',
-//     password: 'example-password',
-//   });
-// };
-
-// //logout
-// const logout = async () => {
-//   const { error } = await supabase.auth.signOut();
-// };

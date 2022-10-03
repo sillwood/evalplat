@@ -1,33 +1,30 @@
 import { useAuth } from '../hooks/useAuth';
-// import { useState } from 'react';
-import { supabase } from '../services/supabaseClient';
-import { Auth, ThemeSupa } from '@supabase/auth-ui-react';
+import { useState } from 'react';
 
 export const Login = () => {
   // isSigningUp from params?
-  // const [isSigningUp, setIsSigningUp] = useState(false);
-  // const [formState, setFormState] = useState({ email: '', password: '' });
-  // const { token, handleSignup, handleLogin } = useAuth();
+  const [isSigningUp, setIsSigningUp] = useState(false);
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const { token, handleSignup, handleLogin } = useAuth();
 
-  // const handleTabChange = () => {
-  //   setFormState({ email: '', password: '' });
-  //   setIsSigningUp(!isSigningUp);
-  // };
+  const handleTabChange = () => {
+    setFormState({ email: '', password: '' });
+    setIsSigningUp(!isSigningUp);
+  };
 
-  // const handleChange = (e) => {
-  //   setFormState({ ...formState, [e.target.name]: e.target.value });
-  // };
+  const handleChange = (e) => {
+    setFormState({ ...formState, [e.target.name]: e.target.value });
+  };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   isSigningUp ? handleSignup(formState) : handleLogin(formState);
-  // };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    isSigningUp ? handleSignup(formState) : handleLogin(formState);
+  };
 
   return (
     <div>
-      <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
-      {/* <div>
-        <form>
+      <div>
+        <form onSubmit={handleSubmit}>
           <input
             name="email"
             type="text"
@@ -42,7 +39,7 @@ export const Login = () => {
             value={formState.password}
             onChange={handleChange}
           />
-          <button onSubmit={handleSubmit}>
+          <button onClick={handleSubmit}>
             {isSigningUp ? 'Register' : 'Login'}
           </button>
         </form>
@@ -51,7 +48,7 @@ export const Login = () => {
             ? 'Already registered? Login here.'
             : 'New user? Register here.'}
         </p>
-      </div> */}
+      </div>
       {/* <h1>This is the Login page</h1>
       <h2>token: {token}</h2>
       <button onClick={handleLogin}>Login</button> */}
