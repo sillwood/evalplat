@@ -16,9 +16,6 @@ export const Experiment = () => {
   );
   const pairs: PairType[] = data || [];
 
-  // one for userId progress on particular experiment
-  // check localstorage to see if experimentId: currentIdx exists, if not, fetch currentIdx
-  // const { completedIdx }: number = useFetch("url.userId.com/experimentId");
   const completedIdx = 0;
 
   const [startIdx, setStartIdx] = useLocalStorage(id, completedIdx);

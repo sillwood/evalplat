@@ -1,6 +1,7 @@
 import { PairType } from '../types';
 import { Button } from './Button';
 import { supabase } from '../services/supabaseClient';
+import { getSession } from '../utils/getSession';
 
 interface Props {
   idx: number;
@@ -11,20 +12,6 @@ interface Props {
 type selected = 'media_a' | 'media_b';
 
 export const Pair = ({ idx, pairs, setStartIdx }: Props) => {
-  const getSession = async () => {
-    const {
-      data: { session },
-      error,
-    } = await supabase.auth.getSession();
-
-    if (error) {
-      console.error(error);
-      return null;
-    } else {
-      return session;
-    }
-  };
-
   const postResponse = async (userId: string, selected: selected) => {
     const { data, error } = await supabase
       .from('response')

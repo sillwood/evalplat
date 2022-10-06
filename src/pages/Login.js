@@ -5,7 +5,7 @@ export const Login = () => {
   // isSigningUp from params?
   const [isSigningUp, setIsSigningUp] = useState(false);
   const [formState, setFormState] = useState({ email: '', password: '' });
-  const { token, handleSignup, handleLogin } = useAuth();
+  const { handleSignup, handleLogin } = useAuth();
 
   const handleTabChange = () => {
     setFormState({ email: '', password: '' });

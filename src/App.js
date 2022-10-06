@@ -8,15 +8,11 @@ import { Logout } from './components/Logout';
 
 export const App = () => {
   // todo:
-  // persist token
   // tailwind styling
 
   // todo API:
   // TODO: where to store if user has access to a particular experiment? on the experiment itself or the user itself?
-
-  // GET: (userId) get all experiments summary with completion info (startIdx for continue)
-  // GET: (experimentId) array of correpsonding pairs
-  // POST: pair respsonse: update with userId and questionId
+  // refactor API calls to work with useClient
 
   const navigate = useNavigate();
 
