@@ -16,9 +16,23 @@ export const Login = () => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
+  const validateInput = () => {
+    const validEmail =
+      formState.email.includes('@') && formState.email.includes('.');
+    const validPassword = formState.password.length >= 6;
+    return validEmail && validPassword;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    isSigningUp ? handleSignup(formState) : handleLogin(formState);
+    const canSubmit = validateInput();
+    if (canSubmit) {
+      isSigningUp ? handleSignup(formState) : handleLogin(formState);
+    } else {
+      // show toast warning
+      // please provide a valid email address and a password longer than 6 characters.
+      console.log('password or email invalid');
+    }
   };
 
   return (
