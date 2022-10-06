@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from 'react';
+import { useState, createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../services/supabaseClient';
 
@@ -18,6 +18,8 @@ export const AuthProvider = ({ children }) => {
       console.error(error);
     } else {
       // confirm email signup?
+      // make toast notification to check email and sign in
+      // check on the confirmation link sent to your email address to confirm your account
       console.log(data);
       console.log('need to confirm email signup');
     }
