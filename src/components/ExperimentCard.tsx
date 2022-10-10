@@ -39,7 +39,7 @@ export const ExperimentCard = ({ experiment }: Props) => {
   }, [experiment.id]);
 
   const handleClick = () => {
-    navigate(`/experiment/${experiment.id}`);
+    navigate(`/experiment/${experiment.id}`, { state: { completedPairs } });
   };
 
   return (
