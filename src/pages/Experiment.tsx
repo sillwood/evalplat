@@ -1,7 +1,7 @@
+import { useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { ExperimentComplete } from '../components/ExperimentComplete';
 import { Pair } from '../components/Pair';
-import { useLocalStorage } from '../hooks/useLocalStorage';
 import { supabase } from '../services/supabaseClient';
 import { useClient } from '../hooks/useClient';
 import { PairType } from '../types';
@@ -21,11 +21,10 @@ export const Experiment = () => {
   );
   const pairs: PairType[] = data || [];
 
-  // get completed pair from location and rewrite localStorage
-  // TODO: what happens if user gets direct link to experiment? (protected route anyway?)
+  // get completed pair from location
   const location = useLocation();
   const { completedPairs } = location.state as LocationState;
-  const [startIdx, setStartIdx] = useLocalStorage(id, completedPairs);
+  const [startIdx, setStartIdx] = useState(completedPairs);
 
   const renderExperimentContent = () => {
     return startIdx < pairs.length ? (
