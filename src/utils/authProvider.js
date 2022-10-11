@@ -1,11 +1,36 @@
-import { useState, createContext } from 'react';
+import { useState, useEffect, createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../services/supabaseClient';
+import { getSession } from './getSession';
 
 export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(null);
+  const [user, setUser] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const session = await getSession();
+      setUser(session?.user ?? null);
+      setIsLoading(false);
+    };
+
+    getUser();
+
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        setUser(session?.user ?? null);
+        setIsLoading(false);
+      }
+    );
+
+    // TODO: fix listener
+    // return () => {
+    //   listener?.unsubscribe();
+    // };
+  }, []);
+
   const navigate = useNavigate();
 
   const handleSignup = async ({ email, password }) => {
@@ -34,7 +59,6 @@ export const AuthProvider = ({ children }) => {
     if (error) {
       console.error(error);
     } else {
-      setToken(data.session.access_token);
       navigate('/dashboard');
     }
   };
@@ -44,16 +68,20 @@ export const AuthProvider = ({ children }) => {
     if (error) {
       console.error(error);
     } else {
-      setToken(null);
+      navigate('/home');
     }
   };
 
   const value = {
-    token,
+    user,
     handleSignup,
     handleLogin,
     handleLogout,
   };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value}>
+      {!isLoading && children}
+    </AuthContext.Provider>
+  );
 };

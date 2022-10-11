@@ -1,9 +1,9 @@
 import { useAuth } from '../hooks/useAuth';
 
 export const Logout = () => {
-  const { token, handleLogout } = useAuth();
+  const { user, handleLogout } = useAuth();
 
-  if (!token) return null;
+  if (!user) return null;
 
   const handleClick = () => {
     handleLogout();

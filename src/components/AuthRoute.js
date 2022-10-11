@@ -2,10 +2,10 @@ import { Navigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
 export const AuthRoute = ({ children }) => {
-  const { token } = useAuth();
+  const { user } = useAuth();
   // todo: persist jwt check?
 
-  if (!token) {
+  if (!user) {
     return <Navigate to="/home" replace />;
   }
 

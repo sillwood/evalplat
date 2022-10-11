@@ -29,9 +29,7 @@ export const Pair = ({ idx, pairs, setStartIdx }: Props) => {
 
   const handleSubmit = async (selected: selected) => {
     const session = await getSession();
-    // need token for RLS
-    // console.log('sesss token', session?.access_token);
-    const userId = session?.user.id || 'response-user-error';
+    const userId = session?.user?.id ?? 'response-user-error';
     const { data, error } = await postResponse(userId, selected);
 
     if (data !== undefined) {
