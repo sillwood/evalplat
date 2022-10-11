@@ -6,7 +6,7 @@ import { getSession } from './getSession';
 export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -25,10 +25,9 @@ export const AuthProvider = ({ children }) => {
       }
     );
 
-    // TODO: fix listener
-    // return () => {
-    //   listener?.unsubscribe();
-    // };
+    return () => {
+      listener?.subscription.unsubscribe();
+    };
   }, []);
 
   const navigate = useNavigate();
