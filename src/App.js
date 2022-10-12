@@ -1,14 +1,14 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { AuthProvider } from './utils/authProvider';
 import { AuthRoute } from './components/AuthRoute';
-import { Login } from './pages/Login';
+import { Home } from './pages/Home';
 import { Dashboard } from './pages/Dashboard';
 import { Experiment } from './pages/Experiment';
 import { Logout } from './components/Logout';
 
 export const App = () => {
   // todo:
-  // form verification
+  // isSigningUp from params w/ separate component?
   // tailwind styling
   // check confirmation email toast after signup
 
@@ -26,8 +26,9 @@ export const App = () => {
           <Logout />
         </header>
         <Routes>
-          <Route index element={<Login />} />
-          <Route path="home" element={<Login />} />
+          <Route index element={<Home />} />
+          <Route path="signup=:bool" element={<Home />} />
+          <Route path="home" element={<Home />} />
           <Route
             path="/experiment/:id"
             element={

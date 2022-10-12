@@ -40,7 +40,9 @@ export const AuthProvider = ({ children }) => {
 
     if (error) {
       console.error(error);
+      // todo: toast
     } else {
+      // todo: toast
       // confirm email signup?
       // make toast notification to check email and sign in
       // check on the confirmation link sent to your email address to confirm your account
@@ -57,6 +59,7 @@ export const AuthProvider = ({ children }) => {
 
     if (error) {
       console.error(error);
+      // todo: toast
     } else {
       navigate('/dashboard');
     }
@@ -66,6 +69,7 @@ export const AuthProvider = ({ children }) => {
     let { error } = await supabase.auth.signOut();
     if (error) {
       console.error(error);
+      // todo: toast
     } else {
       navigate('/home');
     }

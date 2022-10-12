@@ -1,9 +1,13 @@
+import { useParams } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { useState } from 'react';
+import { UserForm } from '../components/UserForm';
 
-export const Login = () => {
-  // isSigningUp from params?
-  const [isSigningUp, setIsSigningUp] = useState(false);
+export const Home = () => {
+  const { bool } = useParams();
+  const isSigningUpDefault = bool ?? false;
+
+  const [isSigningUp, setIsSigningUp] = useState(isSigningUpDefault);
   const [formState, setFormState] = useState({ email: '', password: '' });
   const { handleSignup, handleLogin } = useAuth();
 
@@ -29,7 +33,7 @@ export const Login = () => {
     if (canSubmit) {
       isSigningUp ? handleSignup(formState) : handleLogin(formState);
     } else {
-      // show toast warning
+      // todo: toast
       // please provide a valid email address and a password longer than 6 characters.
       console.log('password or email invalid');
     }
@@ -37,35 +41,13 @@ export const Login = () => {
 
   return (
     <div>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <input
-            name="email"
-            type="text"
-            placeholder="email"
-            value={formState.email}
-            onChange={handleChange}
-          />
-          <input
-            name="password"
-            type="password"
-            placeholder="password"
-            value={formState.password}
-            onChange={handleChange}
-          />
-          <button onClick={handleSubmit}>
-            {isSigningUp ? 'Register' : 'Login'}
-          </button>
-        </form>
-        <p onClick={handleTabChange}>
-          {isSigningUp
-            ? 'Already registered? Login here.'
-            : 'New user? Register here.'}
-        </p>
-      </div>
-      {/* <h1>This is the Login page</h1>
-      <h2>token: {token}</h2>
-      <button onClick={handleLogin}>Login</button> */}
+      <UserForm
+        isSigningUp={isSigningUp}
+        formState={formState}
+        handleTabChange={handleTabChange}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
     </div>
   );
 };
