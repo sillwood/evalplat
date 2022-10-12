@@ -19,6 +19,8 @@ export const Experiment = () => {
       .select(`*, experiment ( prompt )`)
       .match({ experiment_id: id })
   );
+  // TODO: error handling
+
   const pairs: PairType[] = data || [];
 
   // get completed pair from location

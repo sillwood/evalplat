@@ -8,11 +8,9 @@ import { Logout } from './components/Logout';
 
 export const App = () => {
   // todo:
+  // form verification
   // tailwind styling
-
-  // todo API:
-  // TODO: where to store if user has access to a particular experiment? on the experiment itself or the user itself?
-  // refactor API calls to work with useClient
+  // check confirmation email toast after signup
 
   const navigate = useNavigate();
 

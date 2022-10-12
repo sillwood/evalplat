@@ -10,6 +10,7 @@ export const useClient = (request) => {
   const [payload, setPayload] = useState(initialState);
 
   useEffect(() => {
+    console.log('use effect in hook running');
     const sendReq = async (req) => {
       const { data, error } = await req;
       setPayload({ data, error, isLoading: false });

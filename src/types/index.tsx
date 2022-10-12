@@ -19,10 +19,9 @@ export type PairType = {
   experiment: ExperimentMeta;
 };
 
-export type Experiment = {
-  meta: ExperimentMeta;
+export interface Experiment extends ExperimentMeta {
   pairs: PairType[];
-};
+}
 
 export type UserExperimentProgress = {
   userId: string;
