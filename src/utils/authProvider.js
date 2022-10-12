@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const handleLogin = async ({ email, password }) => {
-    let { data, error } = await supabase.auth.signInWithPassword({
+    let { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });

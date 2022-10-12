@@ -8,7 +8,6 @@ import { Logout } from './components/Logout';
 
 export const App = () => {
   // todo:
-  // isSigningUp from params w/ separate component?
   // tailwind styling
   // check confirmation email toast after signup
 
