@@ -1,13 +1,13 @@
 import { useAuth } from '../hooks/useAuth';
 
 export const Logout = () => {
-  const { user, handleLogout } = useAuth();
+    const { user, handleLogout } = useAuth();
 
-  if (!user) return null;
+    if (!user) return null;
 
-  const handleClick = () => {
-    handleLogout();
-  };
+    const handleClick = () => {
+        handleLogout();
+    };
 
-  return <button onClick={handleClick}>Logout</button>;
+    return <button onClick={handleClick}>Logout</button>;
 };

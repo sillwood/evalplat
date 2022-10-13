@@ -1,24 +1,24 @@
 import { useEffect, useState } from 'react';
 
 export const useClient = (request) => {
-  const initialState = {
-    data: null,
-    error: null,
-    isLoading: true,
-  };
-
-  const [payload, setPayload] = useState(initialState);
-
-  useEffect(() => {
-    console.log('use effect in hook running');
-    const sendReq = async (req) => {
-      const { data, error } = await req;
-      setPayload({ data, error, isLoading: false });
+    const initialState = {
+        data: null,
+        error: null,
+        isLoading: true,
     };
 
-    sendReq(request);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    const [payload, setPayload] = useState(initialState);
 
-  return payload;
+    useEffect(() => {
+        console.log('use effect in hook running');
+        const sendReq = async (req) => {
+            const { data, error } = await req;
+            setPayload({ data, error, isLoading: false });
+        };
+
+        sendReq(request);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return payload;
 };
