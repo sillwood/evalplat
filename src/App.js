@@ -1,29 +1,20 @@
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './utils/authProvider';
 import { AuthRoute } from './components/AuthRoute';
 import { Home } from './pages/Home';
 import { Dashboard } from './pages/Dashboard';
 import { Experiment } from './pages/Experiment';
-import { Logout } from './components/Logout';
+import { Navbar } from './components/Navbar';
 
 export const App = () => {
     // todo:
-    // tailwind styling
     // check confirmation email toast after signup
 
-    const navigate = useNavigate();
-
-    const handleClick = () => {
-        navigate('/dashboard');
-    };
 
     return (
         <AuthProvider>
             <div className="App">
-                <header className="App-header" onClick={handleClick}>
-                    <h1>EvalPlat</h1>
-                    <Logout />
-                </header>
+                <Navbar />
                 <Routes>
                     <Route index element={<Home />} />
                     <Route path="signup=:bool" element={<Home />} />
