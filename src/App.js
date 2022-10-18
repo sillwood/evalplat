@@ -10,7 +10,6 @@ export const App = () => {
     // todo:
     // check confirmation email toast after signup
 
-
     return (
         <AuthProvider>
             <div className="App">

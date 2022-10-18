@@ -2,6 +2,7 @@ import { ExperimentCard } from '../components/ExperimentCard';
 import { supabase } from '../services/supabaseClient';
 import { Experiment } from '../types';
 import { useState, useEffect } from 'react';
+import { PageButtonFooter } from '../components/PageButtonFooter';
 
 export const Dashboard = () => {
     const [experiments, setExperiments] = useState<Experiment[]>([]);
@@ -20,6 +21,10 @@ export const Dashboard = () => {
         };
         getExperiments();
     }, []);
+
+    const handleClick = (valence: number) => {
+        console.log('valence ', valence);
+    };
 
     const renderExperiments = (experiments: Experiment[]) => {
         if (experiments.length === 0) {
@@ -46,6 +51,8 @@ export const Dashboard = () => {
                             <ul>{renderExperiments(experiments)}</ul>
                         </div>
                     </div>
+
+                    <PageButtonFooter handleClick={handleClick} />
                 </div>
             </main>
         </div>
