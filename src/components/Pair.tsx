@@ -77,7 +77,7 @@ export const Pair = ({ idx, pairs, setStartIdx }: Props) => {
             <h3 className="text-2xl font-bold tracking-tight text-gray-900">
                 {pairs[idx].experiment.prompt}
             </h3>
-            <div className="flex min-w-full flex-row justify-around">
+            <div className="flex min-w-full flex-col justify-around md:flex-row">
                 <div className="flex flex-col">
                     {mediaALink && (
                         <AudioPlayer label="Clip A" url={mediaALink} />
