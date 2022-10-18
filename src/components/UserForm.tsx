@@ -33,7 +33,7 @@ export const UserForm = ({
                                 ? 'Register for your account'
                                 : 'Login to your account'}
                         </h2>
-                        <div className="mt-2 text-center text-sm text-gray-600 focus:cursor-pointer">
+                        <div className="mt-2 text-center text-sm text-gray-600 hover:cursor-pointer">
                             <p
                                 onClick={handleTabChange}
                                 className="font-medium text-sky-400 hover:text-sky-300"
