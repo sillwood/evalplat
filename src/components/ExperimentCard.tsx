@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ExperimentMeta } from '../types';
 import { supabase } from '../services/supabaseClient';
 import { getSession } from '../utils/getSession';
+import { Button } from './Button';
 
 interface Props {
     experiment: ExperimentMeta;
@@ -51,17 +52,17 @@ export const ExperimentCard = ({ experiment }: Props) => {
     const renderCTAButton = (): ReactNode => {
         if (isComplete()) {
             return (
-                <div className="absolute right-4 bottom-4 inline-flex items-center rounded-lg bg-gray-700 py-2 px-4 text-center text-sm font-medium text-white dark:bg-gray-600 dark:focus:ring-gray-800">
+                <div className="absolute right-4 bottom-4 inline-flex items-center rounded-lg bg-gray-700 py-2 px-4 text-center text-base font-medium text-gray-300 dark:bg-gray-600">
                     Experiment complete
                 </div>
             );
         } else {
             return (
-                <div
+                <Button
+                    modifiers={'absolute right-4 bottom-4'}
                     onClick={handleClick}
-                    className="absolute right-4 bottom-4 inline-flex items-center rounded-lg bg-primary py-2 px-4 text-center text-sm font-medium  text-gray-300  hover:cursor-pointer hover:bg-green-700 hover:text-white focus:outline-none focus:ring-4 focus:ring-green-300 dark:bg-primary dark:hover:bg-green-700 dark:focus:ring-green-800"
+                    text="Take experiment"
                 >
-                    Take experiment
                     <svg
                         aria-hidden="true"
                         className="ml-2 -mr-1 h-4 w-4"
@@ -75,7 +76,7 @@ export const ExperimentCard = ({ experiment }: Props) => {
                             clipRule="evenodd"
                         ></path>
                     </svg>
-                </div>
+                </Button>
             );
         }
     };
