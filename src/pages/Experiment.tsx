@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { ExperimentComplete } from '../components/ExperimentComplete';
 import { Pair } from '../components/Pair';
@@ -28,7 +28,7 @@ export const Experiment = () => {
     const { completedPairs } = location.state as LocationState;
     const [startIdx, setStartIdx] = useState(completedPairs);
 
-    const renderExperimentContent = () => {
+    const renderExperimentContent = (): ReactNode => {
         return startIdx < pairs.length ? (
             <Pair idx={startIdx} pairs={pairs} setStartIdx={setStartIdx} />
         ) : (
@@ -37,15 +37,10 @@ export const Experiment = () => {
     };
 
     return (
-        <div>
-            {!isLoading && (
-                <div>
-                    <div>{renderExperimentContent()}</div>
-                    <div>
-                        progress bar: {startIdx}/{pairs.length}
-                    </div>
-                </div>
-            )}
+        <div className="mx-auto min-h-full max-w-7xl py-6 sm:px-6 lg:px-8">
+            <div className="rounded-lg border-4 border-dashed border-gray-200">
+                {!isLoading && renderExperimentContent()}
+            </div>
         </div>
     );
 };

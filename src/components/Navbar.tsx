@@ -4,7 +4,7 @@ import { Logout } from './Logout';
 export const Navbar = () => {
     const navigate = useNavigate();
 
-    const handleClick = () => {
+    const handleClick = (): void => {
         navigate('/dashboard');
     };
 

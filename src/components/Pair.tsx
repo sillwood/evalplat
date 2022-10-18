@@ -12,7 +12,10 @@ interface Props {
 type selected = 'media_a' | 'media_b';
 
 export const Pair = ({ idx, pairs, setStartIdx }: Props) => {
-    const postResponse = async (userId: string, selected: selected) => {
+    const postResponse = async (
+        userId: string,
+        selected: selected
+    ): Promise<any> => {
         const { data, error } = await supabase
             .from('response')
             .insert([
@@ -27,7 +30,7 @@ export const Pair = ({ idx, pairs, setStartIdx }: Props) => {
         return { data, error };
     };
 
-    const handleSubmit = async (selected: selected) => {
+    const handleSubmit = async (selected: selected): Promise<any> => {
         const session = await getSession();
         const userId = session?.user?.id ?? 'response-user-error';
         const { data, error } = await postResponse(userId, selected);
@@ -40,22 +43,29 @@ export const Pair = ({ idx, pairs, setStartIdx }: Props) => {
     };
 
     return (
-        <>
-            <h3>{pairs[idx].experiment.prompt}</h3>
-            <div>
-                {pairs[idx].media_a}
-                <Button
-                    text={'Choice A'}
-                    onClick={() => handleSubmit('media_a')}
-                />
+        <div className="m-6 flex h-70v flex-col items-center justify-around">
+            <h3 className="text-2xl font-bold tracking-tight text-gray-900">
+                {pairs[idx].experiment.prompt}
+            </h3>
+            <div className="flex min-w-full flex-row justify-around">
+                <div>
+                    {pairs[idx].media_a}
+                    <Button
+                        text={'Choice A'}
+                        onClick={() => handleSubmit('media_a')}
+                    />
+                </div>
+                <div>
+                    {pairs[idx].media_b}
+                    <Button
+                        text={'Choice B'}
+                        onClick={() => handleSubmit('media_b')}
+                    />
+                </div>
             </div>
             <div>
-                {pairs[idx].media_b}
-                <Button
-                    text={'Choice B'}
-                    onClick={() => handleSubmit('media_b')}
-                />
+                Progress: {idx}/{pairs.length}
             </div>
-        </>
+        </div>
     );
 };
