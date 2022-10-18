@@ -29,3 +29,16 @@ export type UserExperimentProgress = {
     experimentId: string;
     totalPairs: number;
 };
+
+export type LoginInfo = {
+    email: string;
+    password: string;
+};
+
+export interface AuthContextType {
+    user: any;
+    isLoading: Boolean;
+    handleSignup: (login: LoginInfo) => void;
+    handleLogin: (login: LoginInfo) => void;
+    handleLogout: () => void;
+}

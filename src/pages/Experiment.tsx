@@ -38,7 +38,6 @@ export const Experiment = () => {
 
     return (
         <div>
-            <h1>This is the Experiment page: {id}</h1>
             {!isLoading && (
                 <div>
                     <div>{renderExperimentContent()}</div>

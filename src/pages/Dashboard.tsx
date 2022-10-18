@@ -28,6 +28,7 @@ export const Dashboard = () => {
 
     const renderExperiments = (experiments: Experiment[]) => {
         if (experiments.length === 0) {
+            // TODO: isLoading state & component
             return <h3>No experiments!</h3>;
         }
         return experiments.map((experiment: Experiment) => (

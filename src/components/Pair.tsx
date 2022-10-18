@@ -19,8 +19,8 @@ export const Pair = ({ idx, pairs, setStartIdx }: Props) => {
                 {
                     user_id: userId,
                     pair_id: pairs[idx].id,
-                    media_id: pairs[idx][selected],
-                },
+                    media_id: pairs[idx][selected]
+                }
             ])
             .select('*');
 
@@ -41,26 +41,21 @@ export const Pair = ({ idx, pairs, setStartIdx }: Props) => {
 
     return (
         <>
-            <p>{pairs[idx].experiment.prompt}</p>
+            <h3>{pairs[idx].experiment.prompt}</h3>
             <div>
-                <h3>This is Pair: {idx}</h3>
+                {pairs[idx].media_a}
+                <Button
+                    text={'Choice A'}
+                    onClick={() => handleSubmit('media_a')}
+                />
             </div>
-            <>
-                <div>
-                    {pairs[idx].media_a}
-                    <Button
-                        text={'Choice A'}
-                        onClick={() => handleSubmit('media_a')}
-                    />
-                </div>
-                <div>
-                    {pairs[idx].media_b}
-                    <Button
-                        text={'Choice B'}
-                        onClick={() => handleSubmit('media_b')}
-                    />
-                </div>
-            </>
+            <div>
+                {pairs[idx].media_b}
+                <Button
+                    text={'Choice B'}
+                    onClick={() => handleSubmit('media_b')}
+                />
+            </div>
         </>
     );
 };

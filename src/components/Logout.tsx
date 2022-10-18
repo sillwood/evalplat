@@ -5,7 +5,7 @@ export const Logout = () => {
 
     if (!user) return null;
 
-    const handleClick = () => {
+    const handleClick = (): void => {
         handleLogout();
     };
 
