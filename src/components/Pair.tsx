@@ -2,6 +2,8 @@ import { PairType } from '../types';
 import { Button } from './Button';
 import { supabase } from '../services/supabaseClient';
 import { getSession } from '../utils/getSession';
+import { useEffect, useState } from 'react';
+import { AudioPlayer } from './AudioPlayer';
 
 interface Props {
     idx: number;
@@ -12,6 +14,34 @@ interface Props {
 type selected = 'media_a' | 'media_b';
 
 export const Pair = ({ idx, pairs, setStartIdx }: Props) => {
+    const [mediaALink, setMediaALink] = useState(null);
+    const [mediaBLink, setMediaBLink] = useState(null);
+
+    useEffect(() => {
+        const fetchMediaUrl = async (mediaType: selected, id: string) => {
+            let { data: media, error } = await supabase
+                .from('media')
+                .select('url')
+                .eq('id', id);
+
+            // todo: media === undefined hack for ts error handling
+            if (media === undefined || error) {
+                console.error(error);
+            } else if (mediaType === 'media_a') {
+                console.log('mediaaa a', media[0].url);
+                setMediaALink(media[0].url);
+            } else if (mediaType === 'media_b') {
+                console.log('mediaaa b ', media[0].url);
+                setMediaBLink(media[0].url);
+            } else {
+                return;
+            }
+        };
+
+        fetchMediaUrl('media_a', pairs[idx].media_a);
+        fetchMediaUrl('media_b', pairs[idx].media_b);
+    }, [idx, pairs]);
+
     const postResponse = async (
         userId: string,
         selected: selected
@@ -48,16 +78,22 @@ export const Pair = ({ idx, pairs, setStartIdx }: Props) => {
                 {pairs[idx].experiment.prompt}
             </h3>
             <div className="flex min-w-full flex-row justify-around">
-                <div>
-                    {pairs[idx].media_a}
+                <div className="flex flex-col">
+                    {mediaALink && (
+                        <AudioPlayer label="Clip A" url={mediaALink} />
+                    )}
                     <Button
+                        modifiers="mt-4"
                         text={'Choice A'}
                         onClick={() => handleSubmit('media_a')}
                     />
                 </div>
-                <div>
-                    {pairs[idx].media_b}
+                <div className="flex flex-col">
+                    {mediaBLink && (
+                        <AudioPlayer label="Clip B" url={mediaBLink} />
+                    )}
                     <Button
+                        modifiers="mt-4"
                         text={'Choice B'}
                         onClick={() => handleSubmit('media_b')}
                     />
