@@ -25,7 +25,7 @@ export const PageButtonFooter = ({ handleClick }: Props) => {
                         Page
                         <span className="font-medium">&nbsp;1&nbsp;</span>
                         of
-                        <span className="font-medium">&nbsp;5&nbsp;</span>
+                        <span className="font-medium">&nbsp;1&nbsp;</span>
                     </p>
                 </div>
                 <div>

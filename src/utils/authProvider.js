@@ -7,6 +7,7 @@ export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [alert, setAlert] = useState('')
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -40,14 +41,9 @@ export const AuthProvider = ({ children }) => {
 
         if (error) {
             console.error(error);
-            // todo: toast
+            setAlert('There was an error signing up! Please try again.');
         } else {
-            // todo: toast
-            // confirm email signup?
-            // make toast notification to check email and sign in
-            // check on the confirmation link sent to your email address to confirm your account
-            console.log(data);
-            console.log('need to confirm email signup');
+            setAlert('Please check your email for a confirmation link for your registration.')
         }
     };
 
@@ -59,7 +55,8 @@ export const AuthProvider = ({ children }) => {
 
         if (error) {
             console.error(error);
-            // todo: toast
+            // todo: more specific error message
+            setAlert('There was an error logging in! Please try again.')
         } else {
             navigate('/dashboard');
         }
@@ -69,7 +66,7 @@ export const AuthProvider = ({ children }) => {
         let { error } = await supabase.auth.signOut();
         if (error) {
             console.error(error);
-            // todo: toast
+            setAlert('There was an error logging out! Please try again.')
         } else {
             navigate('/home');
         }
@@ -78,6 +75,8 @@ export const AuthProvider = ({ children }) => {
     const value = {
         user,
         isLoading,
+        alert,
+        setAlert,
         handleSignup,
         handleLogin,
         handleLogout,

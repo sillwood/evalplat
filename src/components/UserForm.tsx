@@ -9,6 +9,7 @@ interface Props {
     handleTabChange: () => void;
     handleChange: () => void;
     handleSubmit: () => void;
+    alert: string;
 }
 
 export const UserForm = ({
@@ -16,8 +17,15 @@ export const UserForm = ({
     formState,
     handleTabChange,
     handleChange,
-    handleSubmit
+    handleSubmit,
+    alert
 }: Props) => {
+    const alertMessage = () => {
+        if (alert.length > 1) {
+            return <p className="pt-4 text-sm text-red-500">{alert}</p>;
+        }
+    };
+
     return (
         <>
             <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -103,6 +111,7 @@ export const UserForm = ({
                                 </span>
                                 {isSigningUp ? 'Register' : 'Login'}{' '}
                             </button>
+                            {alertMessage()}
                         </div>
                     </form>
                 </div>

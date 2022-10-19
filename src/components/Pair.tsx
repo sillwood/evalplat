@@ -28,10 +28,8 @@ export const Pair = ({ idx, pairs, setStartIdx }: Props) => {
             if (media === undefined || error) {
                 console.error(error);
             } else if (mediaType === 'media_a') {
-                console.log('mediaaa a', media[0].url);
                 setMediaALink(media[0].url);
             } else if (mediaType === 'media_b') {
-                console.log('mediaaa b ', media[0].url);
                 setMediaBLink(media[0].url);
             } else {
                 return;

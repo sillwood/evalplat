@@ -9,14 +9,15 @@ export const Home = () => {
 
     const [isSigningUp, setIsSigningUp] = useState(isSigningUpDefault);
     const [formState, setFormState] = useState({ email: '', password: '' });
-    const { handleSignup, handleLogin } = useAuth();
+    const { alert, setAlert, handleSignup, handleLogin } = useAuth();
 
     const handleTabChange = () => {
         setFormState({ email: '', password: '' });
         setIsSigningUp(!isSigningUp);
+        setAlert('');
     };
 
-    const handleChange = (e) => {
+    const handleChange = e => {
         setFormState({ ...formState, [e.target.name]: e.target.value });
     };
 
@@ -27,15 +28,15 @@ export const Home = () => {
         return validEmail && validPassword;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = e => {
         e.preventDefault();
         const canSubmit = validateInput();
         if (canSubmit) {
             isSigningUp ? handleSignup(formState) : handleLogin(formState);
         } else {
-            // todo: toast
-            // please provide a valid email address and a password longer than 6 characters.
-            console.log('password or email invalid');
+            setAlert(
+                'Please enter a valid email address and password longer than 6 characters.'
+            );
         }
     };
 
@@ -47,6 +48,7 @@ export const Home = () => {
                 handleTabChange={handleTabChange}
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
+                alert={alert}
             />
         </div>
     );
