@@ -19,7 +19,7 @@ module.exports = {
             "100v": "100vh",
           },
           fontFamily: {
-            sans: ['Inter var'],
+            main: ['Noto Sans JP', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI']
           },
         },
     },

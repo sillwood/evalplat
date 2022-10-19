@@ -33,7 +33,7 @@ export const UserForm = ({
                     <div>
                         <img
                             className="mx-auto h-12 w-auto"
-                            src="https://tailwindui.com/img/logos/mark.svg?color=green&shade=600"
+                            src="/logo192.png"
                             alt="Sillwood Technologies"
                         />
                         <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">

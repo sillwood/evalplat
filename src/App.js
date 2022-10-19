@@ -12,7 +12,7 @@ export const App = () => {
 
     return (
         <AuthProvider>
-            <div className="App">
+            <div className="App font-main">
                 <Navbar />
                 <Routes>
                     <Route index element={<Home />} />

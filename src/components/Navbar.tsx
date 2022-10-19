@@ -17,12 +17,9 @@ export const Navbar = () => {
                             className="flex-shrink-0 hover:cursor-pointer"
                             onClick={handleClick}
                         >
-                            <img
-                                className="h-8 w-8"
-                                src="https://tailwindui.com/img/logos/mark.svg?color=white"
-                                alt="Sillwood Technologies"
-                            />
-                            <h1 className="text-white">EvalPlat</h1>
+                            <h1 className="text-lg	 font-bold text-white">
+                                EvalPlat
+                            </h1>
                         </div>
                         <div className="hidden md:block">
                             <div className="ml-10 flex items-baseline space-x-4">
