@@ -72,8 +72,8 @@ export const Pair = ({ idx, pairs, setStartIdx }: Props) => {
     };
 
     return (
-        <div className="m-6 flex h-70v flex-col items-center justify-around">
-            <h3 className="text-2xl font-bold tracking-tight text-gray-900">
+        <div className="m-6 flex h-70v flex-col items-center justify-around text-gray-900 dark:text-white">
+            <h3 className="text-2xl font-bold tracking-tight ">
                 {pairs[idx].experiment.prompt}
             </h3>
             <div className="flex min-w-full flex-col justify-around md:flex-row">

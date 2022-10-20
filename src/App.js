@@ -9,7 +9,7 @@ import { Navbar } from './components/Navbar';
 export const App = () => {
     return (
         <AuthProvider>
-            <div className="App font-main">
+            <div className="App">
                 <Navbar />
                 <Routes>
                     <Route index element={<Home />} />

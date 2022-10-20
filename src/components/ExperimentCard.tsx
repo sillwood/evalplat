@@ -83,13 +83,13 @@ export const ExperimentCard = ({ experiment }: Props) => {
 
     return (
         <div className=" max-w-80vw relative m-2 rounded-lg border border-gray-200 bg-white p-6 shadow-md dark:border-gray-700 dark:bg-gray-800">
-            <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h3 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {experiment.title}
             </h3>
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+            <p className="mb-3 text-base font-normal text-gray-700 dark:text-gray-400">
                 {experiment.prompt}
             </p>
-            <p className="mb-7 font-normal text-gray-700 dark:text-gray-400">
+            <p className="mb-7 text-base font-normal text-gray-700 dark:text-gray-400">
                 Completed: {completedPairs}/{experiment.pair.length}
             </p>
             {renderCTAButton()}

@@ -7,10 +7,10 @@ import { PageButtonFooter } from '../components/PageButtonFooter';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 
 export const Dashboard = () => {
+    // todo: add .range() for pagination
     const { data, error, isLoading } = useClient(
         supabase.from('experiment').select(`*, pair ( id )`)
     );
-
     const experiments: Experiment[] = data || [];
 
     const handleClick = (valence: number): void => {
@@ -19,7 +19,7 @@ export const Dashboard = () => {
 
     const renderExperiments = (experiments: Experiment[]): ReactNode => {
         if (experiments.length === 0) {
-            return <h3>No experiments!</h3>;
+            return <h3>No experiments found!</h3>;
         }
         return experiments.map((experiment: Experiment) => (
             <ExperimentCard key={experiment.id} experiment={experiment} />
@@ -28,9 +28,9 @@ export const Dashboard = () => {
 
     return (
         <div className="min-h-full">
-            <header className="bg-white shadow">
+            <header className="bg-white shadow dark:bg-gray-800">
                 <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
-                    <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+                    <h1 className="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
                         Dashboard
                     </h1>
                 </div>
@@ -42,7 +42,9 @@ export const Dashboard = () => {
                         <div className="px-4 py-6 sm:px-0">
                             <div className="rounded-lg border-4 border-dashed border-gray-200">
                                 {error && <p>{error}</p>}
-                                <ul>{renderExperiments(experiments)}</ul>
+                                <ul>
+                                    {!error && renderExperiments(experiments)}
+                                </ul>
                             </div>
                         </div>
                         <PageButtonFooter handleClick={handleClick} />

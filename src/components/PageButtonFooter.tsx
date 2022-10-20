@@ -4,24 +4,24 @@ interface Props {
 
 export const PageButtonFooter = ({ handleClick }: Props) => {
     return (
-        <div className="flex items-center justify-between border-gray-200 bg-white px-4 py-3 sm:px-6">
+        <div className="flex items-center justify-between bg-white px-4 py-3 dark:bg-gray-900 sm:px-6">
             <div className=" flex flex-1 justify-between sm:hidden">
                 <div
                     onClick={() => handleClick(-1)}
-                    className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:cursor-pointer hover:bg-gray-50"
+                    className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:cursor-pointer hover:bg-gray-50 dark:text-white"
                 >
                     Previous
                 </div>
                 <div
                     onClick={() => handleClick(1)}
-                    className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:cursor-pointer hover:bg-gray-50"
+                    className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:cursor-pointer hover:bg-gray-50 dark:text-white"
                 >
                     Next
                 </div>
             </div>
             <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
                 <div>
-                    <p className="text-sm text-gray-700">
+                    <p className="text-sm text-gray-700 dark:text-white">
                         Page
                         <span className="font-medium">&nbsp;1&nbsp;</span>
                         of
