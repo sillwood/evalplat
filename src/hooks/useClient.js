@@ -12,7 +12,14 @@ export const useClient = (request) => {
     useEffect(() => {
         const sendReq = async (req) => {
             const { data, error } = await req;
-            setPayload({ data, error, isLoading: false });
+
+            if (error) {
+                console.error(error);
+                setPayload({ data: null, error: "There was an unexpected error. Please try again.", isLoading: false });
+            } else {
+                setPayload({ data, error, isLoading: false });
+            }
+
         };
 
         sendReq(request);

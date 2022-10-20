@@ -7,9 +7,6 @@ import { Experiment } from './pages/Experiment';
 import { Navbar } from './components/Navbar';
 
 export const App = () => {
-    // todo:
-    // check confirmation email toast after signup
-
     return (
         <AuthProvider>
             <div className="App font-main">

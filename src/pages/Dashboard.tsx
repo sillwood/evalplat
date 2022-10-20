@@ -1,26 +1,17 @@
-import { ExperimentCard } from '../components/ExperimentCard';
+import { ReactNode } from 'react';
 import { supabase } from '../services/supabaseClient';
+import { useClient } from '../hooks/useClient';
 import { Experiment } from '../types';
-import { useState, useEffect, ReactNode } from 'react';
+import { ExperimentCard } from '../components/ExperimentCard';
 import { PageButtonFooter } from '../components/PageButtonFooter';
+import { LoadingSpinner } from '../components/LoadingSpinner';
 
 export const Dashboard = () => {
-    const [experiments, setExperiments] = useState<Experiment[]>([]);
+    const { data, error, isLoading } = useClient(
+        supabase.from('experiment').select(`*, pair ( id )`)
+    );
 
-    useEffect(() => {
-        const getExperiments = async () => {
-            const { data: experiments, error } = await supabase
-                .from('experiment')
-                .select(`*, pair ( id )`);
-
-            if (error) {
-                console.error(error);
-            } else {
-                setExperiments(experiments);
-            }
-        };
-        getExperiments();
-    }, []);
+    const experiments: Experiment[] = data || [];
 
     const handleClick = (valence: number): void => {
         console.log('valence ', valence);
@@ -28,7 +19,6 @@ export const Dashboard = () => {
 
     const renderExperiments = (experiments: Experiment[]): ReactNode => {
         if (experiments.length === 0) {
-            // TODO: isLoading state & component
             return <h3>No experiments!</h3>;
         }
         return experiments.map((experiment: Experiment) => (
@@ -45,17 +35,20 @@ export const Dashboard = () => {
                     </h1>
                 </div>
             </header>
-            <main>
-                <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-                    <div className="px-4 py-6 sm:px-0">
-                        <div className="rounded-lg border-4 border-dashed border-gray-200">
-                            <ul>{renderExperiments(experiments)}</ul>
+            {isLoading && <LoadingSpinner />}
+            {!isLoading && (
+                <main>
+                    <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+                        <div className="px-4 py-6 sm:px-0">
+                            <div className="rounded-lg border-4 border-dashed border-gray-200">
+                                {error && <p>{error}</p>}
+                                <ul>{renderExperiments(experiments)}</ul>
+                            </div>
                         </div>
+                        <PageButtonFooter handleClick={handleClick} />
                     </div>
-
-                    <PageButtonFooter handleClick={handleClick} />
-                </div>
-            </main>
+                </main>
+            )}
         </div>
     );
 };

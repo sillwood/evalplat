@@ -9,9 +9,9 @@ export const ExperimentComplete = () => {
     };
 
     return (
-        <>
-            <div>Experiment completed. Thank you for your feedback.</div>
+        <div>
+            <h2>Experiment completed. Thank you for your feedback.</h2>
             <Button text={'Return to Dashboard'} onClick={handleClick} />
-        </>
+        </div>
     );
 };

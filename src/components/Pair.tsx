@@ -4,6 +4,7 @@ import { supabase } from '../services/supabaseClient';
 import { getSession } from '../utils/getSession';
 import { useEffect, useState } from 'react';
 import { AudioPlayer } from './AudioPlayer';
+import { LoadingSpinner } from './LoadingSpinner';
 
 interface Props {
     idx: number;
@@ -77,6 +78,7 @@ export const Pair = ({ idx, pairs, setStartIdx }: Props) => {
             </h3>
             <div className="flex min-w-full flex-col justify-around md:flex-row">
                 <div className="flex flex-col">
+                    {!mediaALink && <LoadingSpinner />}
                     {mediaALink && (
                         <AudioPlayer label="Clip A" url={mediaALink} />
                     )}
@@ -87,6 +89,7 @@ export const Pair = ({ idx, pairs, setStartIdx }: Props) => {
                     />
                 </div>
                 <div className="flex flex-col">
+                    {!mediaBLink && <LoadingSpinner />}
                     {mediaBLink && (
                         <AudioPlayer label="Clip B" url={mediaBLink} />
                     )}
