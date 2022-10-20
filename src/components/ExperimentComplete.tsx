@@ -9,9 +9,15 @@ export const ExperimentComplete = () => {
     };
 
     return (
-        <div>
-            <h2>Experiment completed. Thank you for your feedback.</h2>
-            <Button text={'Return to Dashboard'} onClick={handleClick} />
+        <div className=" max-w-80vw relative m-2 rounded-lg border border-gray-200 bg-white p-6 shadow-md dark:border-gray-700 dark:bg-gray-800">
+            <h3 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Experiment completed. Thank you for your feedback.
+            </h3>
+            <Button
+                modifiers={'mt-4'}
+                text={'Return to Dashboard'}
+                onClick={handleClick}
+            />
         </div>
     );
 };
